@@ -1,12 +1,11 @@
-name: Build
+name: Gist Update
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
 
     steps:
