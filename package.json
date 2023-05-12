@@ -1,0 +1,24 @@
+{
+  "name": "top-language-box",
+  "version": "1.0.0",
+  "description": "Top-Language-Box Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suk0803/Top-Language-Box.git"
+  },
+  "author": "Suk0803",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Suk0803/Top-Language-Box/issues"
+  },
+  "homepage": "https://github.com/Suk0803/Top-Language-Box#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "axios": "^1.4.0"
+  }
+}
