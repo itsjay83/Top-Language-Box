@@ -19,7 +19,7 @@ async function updateGist(username, token, gistId) {
         }
 
         const gistContent = {
-            description: 'My Top-Language',
+            description: 'My Top-Languages',
             public: true,
             files: {
                 'language-usage.txt': {
