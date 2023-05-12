@@ -14,7 +14,7 @@ async function updateGist(username, token, gistId) {
         for (const [language, bytes] of sortedLanguages) {
             const ratio = bytes / totalBytes;
             const barLength = Math.round(ratio * maxBarLength);
-            const bar = '#'.repeat(barLength);
+            const bar = '█'.repeat(barLength).padEnd(maxBarLength, "░");
             output += `${language.padEnd(11, " ")}: ${bar} ${ratio.toFixed(2)*100}%\n`;
         }
 
@@ -38,7 +38,7 @@ async function updateGist(username, token, gistId) {
 }
 
 const username = 'Suk0803'; // replace with your GitHub username
-const token = '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'; // replace with your GitHub token
+const token = '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'; // replace with your GitHub token
 // const token = process.env.GH_TOKEN;
 const gistId = 'f5ebdde2b6a31849520797f9f4e49749'; // replace with your Gist ID
 
