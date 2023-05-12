@@ -1,26 +1,26 @@
-name: Gist Update
+name: Update Gist
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *" # Runs every day at midnight
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: "16"
+          node-version: "16" # Use Node.js version 14
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run JavaScript file
-        run: |
-          chmod +x app.js
-          node app.js
+      - name: Run script
+        run: npm start
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
