@@ -29,4 +29,3 @@ async function calculateLanguageUsage(username, token) {
 
 module.exports = calculateLanguageUsage;
 
-
