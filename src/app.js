@@ -38,7 +38,7 @@ async function updateGist(username, token, gistId) {
 }
 
 const username = 'Suk0803'; // replace with your GitHub username
-const token = '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'; // replace with your GitHub token
+const token = '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'; // replace with your GitHub token
 // const token = process.env.GH_TOKEN;
 const gistId = 'f5ebdde2b6a31849520797f9f4e49749'; // replace with your Gist ID
 
