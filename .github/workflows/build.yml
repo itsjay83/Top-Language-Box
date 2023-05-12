@@ -24,4 +24,4 @@ jobs:
       - name: Run JavaScript file
         run: |
           chmod +x ./src/app.js
-          node ./src/app.js
+          node app.js
