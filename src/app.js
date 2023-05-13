@@ -34,7 +34,8 @@ async function updateGist(username, token, gistId) {
             const fullBlocks = Math.floor(barLength / 8);
             const remainder = barLength % 8;
             const bar = '█'.repeat(fullBlocks) + syms[remainder] + '░'.repeat(maxBarLength / 8 - fullBlocks - 1);
-            output += `${paddedLanguage}${paddedBytes}: ${bar} ${(ratio * 100).toFixed(2).padStart(4, " ")}%\n`;
+            const percent = (ratio * 100).toFixed(2);
+            output += `${paddedLanguage}${paddedBytes}: ${bar} ${percent.padStart(6, " ")}%\n`;
         }
 
         const gistContent = {
