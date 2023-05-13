@@ -6,12 +6,15 @@ const calculateLanguageUsage = require('./calculation');
 async function updateGist(username, token, gistId) {
     try {
         const { languages, totalBytes } = await calculateLanguageUsage(username, token);
-        const maxBarLength = 30 * 8; // Now each bar can be split into 8 (due to syms)
+        const maxBarLength = 30 * 8;
 
         let output = ``;
 
         // Sort languages by usage in descending order
         const sortedLanguages = Object.entries(languages).sort((a, b) => b[1] - a[1]);
+
+        // Find the length of the longest language name
+        const maxLanguageNameLength = sortedLanguages.reduce((max, [language]) => Math.max(max, language.length), 0);
 
         for (const [language, bytes] of sortedLanguages) {
             const ratio = bytes / totalBytes;
@@ -19,7 +22,7 @@ async function updateGist(username, token, gistId) {
             const fullBlocks = Math.floor(barLength / 8);
             const remainder = barLength % 8;
             const bar = '█'.repeat(fullBlocks) + syms[remainder] + '░'.repeat(maxBarLength / 8 - fullBlocks - 1);
-            output += `${language.padEnd(11, " ")}: ${bar} ${ratio.toFixed(2)*100}%\n`;
+            output += `${language.padEnd(maxLanguageNameLength + 1, " ")}: ${bar} ${ratio.toFixed(2)*100}%\n`;
         }
 
         const gistContent = {
