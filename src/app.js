@@ -6,7 +6,7 @@ const calculateLanguageUsage = require('./calculation');
 async function updateGist(username, token, gistId) {
     try {
         const { languages, totalBytes } = await calculateLanguageUsage(username, token);
-        const maxBarLength = 30 * 8;
+        const maxBarLength = 20 * 8;
 
         let output = ``;
 
