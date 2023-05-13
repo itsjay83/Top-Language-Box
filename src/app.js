@@ -13,16 +13,13 @@ async function updateGist(username, token, gistId) {
         // Sort languages by usage in descending order
         const sortedLanguages = Object.entries(languages).sort((a, b) => b[1] - a[1]);
 
-        // Find the length of the longest language name
-        const maxLanguageNameLength = sortedLanguages.reduce((max, [language]) => Math.max(max, language.length), 0);
-
         for (const [language, bytes] of sortedLanguages) {
             const ratio = bytes / totalBytes;
             const barLength = Math.round(ratio * maxBarLength);
             const fullBlocks = Math.floor(barLength / 8);
             const remainder = barLength % 8;
             const bar = '█'.repeat(fullBlocks) + syms[remainder] + '░'.repeat(maxBarLength / 8 - fullBlocks - 1);
-            output += `${language.padEnd(maxLanguageNameLength + 1, " ")}: ${bar} ${ratio.toFixed(2)*100}%\n`;
+            output += `${language}: ${bytes} bytes, ${bar} ${(ratio * 100).toFixed(2)}%\n`;
         }
 
         const gistContent = {
