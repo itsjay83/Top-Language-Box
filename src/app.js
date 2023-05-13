@@ -1,11 +1,13 @@
+const syms = "░▏▎▍▌▋▊▉█";
+
 const axios = require('axios');
 const calculateLanguageUsage = require('./calculation');
 
 async function updateGist(username, token, gistId) {
     try {
         const { languages, totalBytes } = await calculateLanguageUsage(username, token);
-        const maxBarLength = 30; // Maximum length of the bar graph
-        // let output = `Language usage ratios for GitHub user ${username} are:\n`;
+        const maxBarLength = 30 * 8; // Now each bar can be split into 8 (due to syms)
+
         let output = ``;
 
         // Sort languages by usage in descending order
@@ -14,7 +16,9 @@ async function updateGist(username, token, gistId) {
         for (const [language, bytes] of sortedLanguages) {
             const ratio = bytes / totalBytes;
             const barLength = Math.round(ratio * maxBarLength);
-            const bar = '█'.repeat(barLength).padEnd(maxBarLength, "░");
+            const fullBlocks = Math.floor(barLength / 8);
+            const remainder = barLength % 8;
+            const bar = '█'.repeat(fullBlocks) + syms[remainder] + '░'.repeat(maxBarLength / 8 - fullBlocks - 1);
             output += `${language.padEnd(11, " ")}: ${bar} ${ratio.toFixed(2)*100}%\n`;
         }
 
@@ -42,5 +46,3 @@ const token = process.env.GH_TOKEN;
 const gistId = process.env.GH_GISTID;
 
 updateGist(username, token, gistId);
-
-
