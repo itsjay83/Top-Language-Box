@@ -26,4 +26,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_GISTID: ${{ secrets.GH_GISTID}}
           USER_NAME: ${{ github.actor }}
-          TIMEZONE: Asia/Soeul
+          TIMEZONE: Asia/Seoul #replace your timezone

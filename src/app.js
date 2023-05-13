@@ -37,9 +37,9 @@ async function updateGist(username, token, gistId) {
     }
 }
 
-const username = process.env.USER_NAME; // replace with your GitHub username
+const username = process.env.USER_NAME;
 const token = process.env.GH_TOKEN;
-const gistId = process.env.GH_GISTID;// replace with your Gist ID
+const gistId = process.env.GH_GISTID;
 
 updateGist(username, token, gistId);
 
