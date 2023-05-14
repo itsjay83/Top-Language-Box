@@ -28,7 +28,7 @@ async function updateGist(username, token, gistId) {
         for (const [language, bytes] of sortedLanguages) {
             const formattedBytes = formatBytes(bytes);
             const paddedLanguage = language.padEnd(maxLanguageNameLength + 1, " ");
-            const paddedBytes = formattedBytes.padStart(maxByteLength + 1, " ");
+            const paddedBytes = formattedBytes.padStart(maxByteLength, " ");
             const ratio = bytes / totalBytes;
             const barLength = Math.round(ratio * maxBarLength);
             const fullBlocks = Math.floor(barLength / 8);
