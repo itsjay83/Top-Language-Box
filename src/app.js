@@ -42,7 +42,7 @@ async function updateGist(username, token, gistId) {
             description: 'My Top-Languages(include forks)',
             public: true,
             files: {
-                'language-usage.txt': {
+                'top-language-usage.txt': {
                     content: output
                 }
             }
