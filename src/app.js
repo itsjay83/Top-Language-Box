@@ -39,7 +39,7 @@ async function updateGist(username, token, gistId) {
         }
 
         const gistContent = {
-            description: 'My Top-Languages(include forks)',
+            description: 'My Top-Languages',
             public: true,
             files: {
                 'top-language-usage.txt': {
