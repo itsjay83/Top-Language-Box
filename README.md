@@ -110,5 +110,5 @@ This usually means:
 
 ---
 
-Inspered by[github_readme_state](https://github.com/anuraghazra/github-readme-stats#top-languages-card) and [productive-box](https://github.com/maxam2017/productive-box).
+Inspired by [github_readme_state](https://github.com/anuraghazra/github-readme-stats#top-languages-card) and [productive-box](https://github.com/maxam2017/productive-box).
 2023.06.15

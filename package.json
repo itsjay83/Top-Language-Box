@@ -2,10 +2,8 @@
   "name": "top-language-box",
   "version": "1.0.0",
   "description": "Top-Language-Box Project",
-  "main": "app.js",
-  
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/app.js"
   },
   "repository": {
@@ -19,8 +17,6 @@
   },
   "homepage": "https://github.com/Suk0803/Top-Language-Box#readme",
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1",
     "axios": "^1.4.0"
   }
 }

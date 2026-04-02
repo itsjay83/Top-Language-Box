@@ -17,7 +17,8 @@ async function updateGist(username, token, gistId) {
       username,
       token
     );
-    const maxBarLength = 20 * 8;
+    const totalSlots = 20;
+    const maxBarLength = totalSlots * 8;
 
     let output = ``;
 
@@ -44,10 +45,17 @@ async function updateGist(username, token, gistId) {
       const barLength = Math.round(ratio * maxBarLength);
       const fullBlocks = Math.floor(barLength / 8);
       const remainder = barLength % 8;
-      const bar =
-        "█".repeat(fullBlocks) +
-        syms[remainder] +
-        "░".repeat(maxBarLength / 8 - fullBlocks - 1);
+
+      let bar;
+      if (fullBlocks >= totalSlots) {
+        bar = "█".repeat(totalSlots);
+      } else {
+        bar =
+          "█".repeat(fullBlocks) +
+          syms[remainder] +
+          "░".repeat(totalSlots - fullBlocks - 1);
+      }
+
       const percent = (ratio * 100).toFixed(2);
       output += `${paddedLanguage}${paddedBytes}: ${bar} ${percent.padStart(
         5,
@@ -65,16 +73,11 @@ async function updateGist(username, token, gistId) {
       },
     };
 
-    // Support both classic and fine-grained tokens
-    const authHeader = token.startsWith('ghp_') || token.startsWith('github_pat_') 
-      ? `Bearer ${token}` 
-      : `token ${token}`;
-    
     const auth = {
       headers: {
-        Authorization: authHeader,
+        Authorization: `Bearer ${token}`,
         "User-Agent": "Top-Language-Box",
-        Accept: "application/vnd.github.v3+json",
+        Accept: "application/vnd.github+json",
       },
     };
     await axios.patch(

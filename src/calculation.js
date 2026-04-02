@@ -2,28 +2,30 @@ const axios = require("axios");
 
 async function calculateLanguageUsage(username, token) {
   try {
-    // Support both classic and fine-grained tokens
-    const authHeader = token.startsWith('ghp_') || token.startsWith('github_pat_') 
-      ? `Bearer ${token}` 
-      : `token ${token}`;
-    
     const auth = {
       headers: {
-        Authorization: authHeader,
+        Authorization: `Bearer ${token}`,
         "User-Agent": "Top-Language-Box",
-        Accept: "application/vnd.github.v3+json",
+        Accept: "application/vnd.github+json",
       },
     };
 
-    const repos = await axios.get(
-      `https://api.github.com/users/${username}/repos?per_page=100`,
-      auth
-    );
+    let allRepos = [];
+    let page = 1;
+    while (true) {
+      const response = await axios.get(
+        `https://api.github.com/users/${username}/repos?per_page=100&page=${page}`,
+        auth
+      );
+      allRepos = allRepos.concat(response.data);
+      if (response.data.length < 100) break;
+      page++;
+    }
 
     const languages = {};
     let totalBytes = 0;
 
-    for (const repo of repos.data) {
+    for (const repo of allRepos) {
       const lang = await axios.get(repo.languages_url, auth);
       for (const language in lang.data) {
         if (languages[language]) {
